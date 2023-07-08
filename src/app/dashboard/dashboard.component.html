@@ -1,65 +1,23 @@
+<div class="custom-toolbar">
+  Welcome, Dashboard
+</div>
+
+
 <body>
-    <div class="search-bar">
-      <input type="text" placeholder="Search mechanic...">
+
+  <div class="container">
+    <div class="card" *ngFor="let mechanic of nearByMechanics">
+      <div class="shop-info">
+        <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
+        <div>
+          <div class="shop-name">{{ mechanic.name }}</div>
+          <div class="shop-address">{{ mechanic.address }}</div>
+        </div>
+      </div>
+      <div class="distance">{{getRandomDistance()}} m Away</div>
+      <button class="call-button">Call</button>
+      <button (click)="navigateToMaps(mechanic.lat,mechanic.lng)" class="profile-button">View Location</button>
+      <button class="profile-button" (click)="book(mechanic)">Get Service</button>
     </div>
-    
-    <div class="container">
-      <div class="card">
-        <div class="shop-info">
-          <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
-          <div>
-            <div class="shop-name">Mechanic Shop 1</div>
-            <div class="shop-address">123 Main Street, City, State</div>
-          </div>
-        </div>
-        <div class="distance">15m away</div>
-        <button class="call-button">Call</button>
-        <button class="profile-button">View Location</button>
-        <button class="hide-button">Hide Mechanic</button>
-      </div>
-      
-      <div class="card">
-        <div class="shop-info">
-          <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
-          <div>
-            <div class="shop-name">Mechanic Shop 2</div>
-            <div class="shop-address">456 Elm Street, City, State</div>
-          </div>
-        </div>
-        <div class="distance">10m away</div>
-        <button class="call-button">Call</button>
-        <button class="profile-button">View Location</button>
-        <button class="hide-button">Hide Mechanic</button>
-      </div>
-      
-      <div class="card">
-        <div class="shop-info">
-          <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
-          <div>
-            <div class="shop-name">Mechanic Shop 3</div>
-            <div class="shop-address">789 Oak Street, City, State</div>
-          </div>
-        </div>
-        <div class="distance">20m away</div>
-        <button class="call-button">Call</button>
-        <button class="profile-button">View Location</button>
-        <button class="hide-button">Hide Mechanic</button>
-      </div>
-      
-      <div class="card">
-        <div class="shop-info">
-          <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
-          <div>
-            <div class="shop-name">Mechanic Shop 4</div>
-            <div class="shop-address">321 Pine Street, City, State</div>
-          </div>
-        </div>
-        <div class="distance">25m away</div>
-        <button class="call-button">Call</button>
-        <button class="profile-button">View Location</button>
-        <button class="hide-button">Hide Mechanic</button>
-      </div>
-    </div>
-    
-  </body>
-  
+  </div>
+</body>

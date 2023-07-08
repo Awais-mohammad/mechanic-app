@@ -24,15 +24,16 @@
     <div style="margin-left: 20px;">
       <h1>Login to Continue</h1>
         <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;">
-          <input aria-label="Email" placeholder="Email"/>
+          <input aria-label="Email" placeholder="Email" required [(ngModel)]="mechanicEmail" name="mechanicEmail"/>
+          
         </div>
   
         <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-          <input aria-label="Password" placeholder="Password"/>
+          <input aria-label="Password" placeholder="Password" required [(ngModel)]="mechanicPassword" name="mechanicPassword"/>
         </div>
      
       <div class="btn-wrapper">
-        <button ion-button expand="block" color="primary">Login</button>
+        <button (click)="loginAsMechanic()" ion-button expand="block" color="primary">Login</button>
       </div>
       <span (click)="changeView('mechanic-signup')">Don't have an Account? SignUp</span>
     </div>
@@ -48,63 +49,59 @@
     <div style="margin-left: 20px;">
       <h1>Login to Continue</h1>
         <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;">
-          <input aria-label="Email" placeholder="Email"/>
+          <input aria-label="Email" placeholder="Email" required [(ngModel)]="userEmail" name="userEmail"/>
         </div>
   
         <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-          <input aria-label="Password" placeholder="Password"/>
+          <input aria-label="Password" placeholder="Password" required [(ngModel)]="userPassword" name="userPassword"/>
         </div>
      
       <div class="btn-wrapper">
-        <button (click)="navigateTo('user-dashboard')" ion-button expand="block" color="primary">Login</button>
+        <button (click)="loginAsUser()" ion-button expand="block" color="primary">Login</button>
       </div>
       <span (click)="changeView('user-signup')">Don't have an Account? SignUp</span>
     </div>
   
   </main>
-  
+ 
   <main style="overflow: scroll;" *ngIf="currentView == 'mechanic-signup'">
-  
-    <div >
+    <div>
       <img (click)="changeView('default')" style="height: 280px;position:relative;left: 47px;" src="./../../assets/—Pngtree—fix car and vehicle logo_5092587.png" alt="">
     </div>
   
     <div style="margin-left: 20px;">
       <h1>SignUp to Continue</h1>
-    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Name" placeholder="Name"/>
-    </div>
-    
-    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Email" placeholder="Email"/>
-    </div>
-    
-    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Password" placeholder="Password"/>
-    </div>
-    
-    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="CNIC" placeholder="CNIC"/>
-    </div>
-    
-    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Phone" placeholder="Phone"/>
-    </div>
-  
-    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Phone" placeholder="Location"/>
-    </div>
-   
-  
+      <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+        <input aria-label="Name" placeholder="Name" [(ngModel)]="mechanicName" name="mechanicName"/>
       </div>
-  
+      
+      <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+        <input aria-label="Email" placeholder="Email" [(ngModel)]="mechanicEmail" name="mechanicEmail"/>
+      </div>
+      
+      <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+        <input aria-label="Password" placeholder="Password" [(ngModel)]="mechanicPassword" name="mechanicPassword"/>
+      </div>
+      
+      <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+        <input aria-label="CNIC" placeholder="CNIC" [(ngModel)]="mechanicCNIC" name="mechanicCNIC"/>
+      </div>
+      
+      <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+        <input aria-label="Phone" placeholder="Phone" [(ngModel)]="mechanicPhone" name="mechanicPhone"/>
+      </div>
+    
+      <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+        <input aria-label="Location" placeholder="Location" [(ngModel)]="mechanicLocation" name="mechanicLocation"/>
+      </div>
+     
       <div class="btn-wrapper">
-        <button ion-button expand="block" color="primary">Signup</button>
+        <button ion-button expand="block" color="primary" (click)="signUpAsMechanic()">Signup</button>
       </div>
       <span (click)="changeView('mechanic')">Already have an Account? Login</span>
-   
-  
+    </div>
   </main>
+  
   
   <main style="overflow: scroll;" *ngIf="currentView == 'user-signup'">
   
@@ -115,29 +112,29 @@
     <div style="margin-left: 20px;">
       <h1>SignUp to Continue</h1>
     <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Name" placeholder="Name"/>
+      <input [(ngModel)]="userName" aria-label="Name" placeholder="Name"/>
     </div>
     
     <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Email" placeholder="Email"/>
+      <input [(ngModel)]="userEmail" aria-label="Email" placeholder="Email"/>
     </div>
     
     <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Password" placeholder="Password"/>
+      <input [(ngModel)]="userPassword" aria-label="Password" placeholder="Password"/>
     </div>
     
     <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Location" placeholder="Location"/>
+      <input [(ngModel)]="userLocation" aria-label="Location" placeholder="Location"/>
     </div>
     
     <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
-      <input aria-label="Phone" placeholder="Phone"/>
+      <input [(ngModel)]="userPhone" aria-label="Phone" placeholder="Phone"/>
     </div>
   
       </div>
   
       <div class="btn-wrapper">
-        <button ion-button expand="block" color="primary">Login</button>
+        <button (click)="signUpAsUser()" ion-button expand="block" color="primary">Signup</button>
       </div>
       <span (click)="changeView('user')">Already have an Account? Login</span>
    

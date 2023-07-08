@@ -9,6 +9,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '../environments/environment';
+import { MechDashboardComponent } from './mech-dashboard/mech-dashboard.component';
+import { MechMapsComponent } from './mech-maps/mech-maps.component';
+import { MechServicesComponent } from './mech-services/mech-services.component';
 
 @NgModule({
   declarations: [
@@ -16,15 +23,21 @@ import { ProfileComponent } from './profile/profile.component';
     MapsComponent,
     AuthComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    MechDashboardComponent,
+    MechMapsComponent,
+    MechServicesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

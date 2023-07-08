@@ -8,24 +8,22 @@
 <body>
     <ul style="margin-top: 40px;" class="options-list">
         <li>
-            <span class="option-label">View Profile</span>
-            <button class="option-button">Go</button>
+            <span class="option-label">Welcome, {{currentUser?.name}}</span>
         </li>
+
         <li>
-            <span class="option-label">Last Orders</span>
-            <button class="option-button">View</button>
+            <span class="option-label">Reset Password</span>
+            <button (click)="resetPassword()" class="option-button">Go</button>
         </li>
-        <li>
-            <span class="option-label">Edit Password</span>
-            <button class="option-button">Edit</button>
-        </li>
+
         <li>
             <span class="option-label">Delete Account</span>
-            <button class="option-button">Delete</button>
+            <button (click)="deleteAccount()" class="option-button">Delete</button>
         </li>
+
         <li>
             <span class="option-label">Logout</span>
-            <button class="option-button">Logout</button>
+            <button (click)="logout()" class="option-button">Logout</button>
         </li>
     </ul>
 </body>

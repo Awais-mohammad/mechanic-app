@@ -1,0 +1,20 @@
+<div class="custom-toolbar">
+    Welcome, Dashboard
+</div>
+
+<body>
+    <div class="container">
+        <div class="card" *ngFor="let booking of bookings">
+            <div class="shop-info">
+                <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
+                <div>
+                    <div class="shop-name">{{ booking.username }}</div>
+                    <div class="shop-address">Price to be deciced after work</div>
+                </div>
+            </div>
+            <div class="distance">{{ getRandomDistance() }} m Away</div>
+            <button class="call-button">Call</button>
+            <button (click)="navigateToMaps(booking.latitude, booking.longitude)" class="profile-button">View Location</button>
+        </div>
+    </div>
+</body>

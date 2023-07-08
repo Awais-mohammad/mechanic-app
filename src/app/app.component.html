@@ -1,7 +1,14 @@
 <router-outlet></router-outlet>
 
-<div *ngIf="currentURL != 'auth'" class="tab-bar">
+<div *ngIf="currentURL != 'auth' && currentUser?.userType === 'user'" class="tab-bar">
     <div (click)="navigateTo('user-dashboard')" class="tab-item active">dashboard</div>
     <div (click)="navigateTo('maps')" class="tab-item">Maps</div>
     <div (click)="navigateTo('user-profile')" class="tab-item">Profile</div>
+</div>
+
+<div *ngIf="currentURL != 'auth' && currentUser?.userType !== 'user'" class="tab-bar">
+    <div (click)="navigateTo('mech-dashboard')" class="tab-item active">Orders</div>
+    <div (click)="navigateTo('mech-maps')" class="tab-item">Maps</div>
+    <div (click)="navigateTo('user-profile')" class="tab-item">Profile</div>
+    <!-- <div (click)="navigateTo('mech-services')" class="tab-item">Services</div> -->
 </div>
