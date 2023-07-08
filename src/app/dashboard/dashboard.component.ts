@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private router: Router,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private sanitizer: DomSanitizer
   ) {}
 
   nearByMechanics: any = [];
@@ -36,37 +38,52 @@ export class DashboardComponent implements OnInit {
       queryParams: { showmaps: true, lats: lats, longs: long },
     });
   }
+  call(phone: any) {
+    const dialerUrl = this.generateDialerUrl(phone);
+    window.open(dialerUrl.toString(), '_system');
+  }
+
+  generateDialerUrl(phoneNumber: string): SafeUrl {
+    const telUrl = `tel:${phoneNumber}`;
+    return this.sanitizer.bypassSecurityTrustUrl(telUrl);
+  }
 
   book(mechanic: any): void {
     const currentUser: any = this.auth.currentUser;
-  
+
     if (currentUser) {
       const mechanicDocRef = this.firestore
-        .collection('mechanics', ref => ref.where('cnic', '==', mechanic.cnic))
+        .collection('mechanics', (ref) =>
+          ref.where('cnic', '==', mechanic.cnic)
+        )
         .get()
-        .subscribe(snapshot => {
+        .subscribe((snapshot) => {
           if (snapshot.empty) {
             console.log('No mechanic found with the specified CNIC.');
             // Handle case where no mechanic is found
             return;
           }
-  
-          snapshot.forEach(doc => {
+
+          snapshot.forEach((doc) => {
             const mechanicId = doc.id;
             const timestamp = new Date();
-  
+
             // Get current user's position (latitude and longitude)
             navigator.geolocation.getCurrentPosition(
               (position) => {
                 const { latitude, longitude } = position.coords;
-  
+
                 // Update mechanic document with user's data
-                this.firestore.collection('mechanics').doc(mechanicId).collection('bookings').add({
-                  latitude: latitude,
-                  longitude: longitude,
-                  name: currentUser.name ? currentUser.name : "User alpha",
-                  timestamp: timestamp,
-                })
+                this.firestore
+                  .collection('mechanics')
+                  .doc(mechanicId)
+                  .collection('bookings')
+                  .add({
+                    latitude: latitude,
+                    longitude: longitude,
+                    name: currentUser.name ? currentUser.name : 'User alpha',
+                    timestamp: timestamp,
+                  })
                   .then(() => {
                     console.log('Mechanic booking successful.');
                     // Handle success or display a confirmation message to the user
@@ -88,5 +105,4 @@ export class DashboardComponent implements OnInit {
       // Handle case where no user is signed in
     }
   }
-  
 }

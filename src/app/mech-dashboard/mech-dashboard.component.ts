@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mech-dashboard',
@@ -15,7 +16,8 @@ export class MechDashboardComponent implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -81,4 +83,15 @@ export class MechDashboardComponent implements OnInit {
       queryParams: { showmaps: true, lats: lats, longs: long },
     });
   }
+  
+  call(phone: any) {
+    const dialerUrl = this.generateDialerUrl(phone);
+    window.open(dialerUrl.toString(), '_system');
+  }
+
+  generateDialerUrl(phoneNumber: string): SafeUrl {
+    const telUrl = `tel:${phoneNumber}`;
+    return this.sanitizer.bypassSecurityTrustUrl(telUrl);
+  }
+
 }

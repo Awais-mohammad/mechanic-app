@@ -13,8 +13,9 @@
                 </div>
             </div>
             <div class="distance">{{ getRandomDistance() }} m Away</div>
-            <button class="call-button">Call</button>
-            <button (click)="navigateToMaps(booking.latitude, booking.longitude)" class="profile-button">View Location</button>
+            <button (click)="call('+923989987908')" class="call-button">Call</button>
+            <button (click)="navigateToMaps(booking.latitude, booking.longitude)" class="profile-button">View
+                Location</button>
         </div>
     </div>
 </body>
