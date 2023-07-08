@@ -1,0 +1,24 @@
+.tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #392eca;
+    padding: 8px 0;
+    display: flex;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
+  
+  .tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  
+  .tab-item {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+  }
+  

@@ -1,0 +1,62 @@
+main {
+    background-color: white;
+    width: 100%;
+    height: 100em;
+}
+
+button {
+    width: 95%;
+    padding: 17px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    margin-top: 14px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: -30px;
+    font-size: 29px;
+}
+
+.btn-wrapper {
+    position: relative;
+    top: 20px;
+}
+
+span {
+    position: absolute;
+    bottom: 15px;
+    text-align: center;
+    left: 103px;
+    color: gray;
+    font-family: inherit;
+}
+
+input.native-input.sc-ion-i {
+    background: white;
+    color: black;
+    font-family: math;
+}
+
+img {
+    max-width: 20em;
+    max-height: 40em;
+    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 31px;
+}
+
+input {
+    border: 2px solid black;
+    width: 90%;
+    padding: 5px;
+}

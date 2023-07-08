@@ -1,0 +1,86 @@
+* {
+    background-color: white;
+  }
+  
+      /* Styles for mobile view */
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      
+      .card {
+        width: 100%;
+        min-height: 10em;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      
+      .card .shop-name {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      
+      .card .shop-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+      
+      .card .shop-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      
+      .card .shop-address {
+        color: #888;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      
+      .card .distance {
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 5px;
+      }
+      
+      .card .call-button, .card .profile-button, .card .hide-button {
+        background-color: #000;
+        color: #fff;
+        border-radius: 12px;
+        border: none;
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .search-bar {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      
+      .search-bar input[type="text"] {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        padding: 5px;
+      }
+  
+      button {
+        margin-top: 4px;
+      }

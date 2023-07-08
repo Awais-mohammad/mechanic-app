@@ -1,0 +1,146 @@
+<main *ngIf="currentView == 'default'">
+
+    <div>
+      <img (click)="changeView('default')" src="./../../assets/—Pngtree—fix car and vehicle logo_5092587.png" alt="">
+    </div>
+  
+    <div>
+      <h1>Welcome</h1>
+      <div class="btn-wrapper">
+        <button (click)="changeView('mechanic')" ion-button expand="block" color="primary">Login As Mechanic</button>
+        <button (click)="changeView('user')" ion-button expand="block" color="primary">Login As User</button>
+      </div>
+      <span>All rights reserved 2023</span>
+    </div>
+  
+  </main>
+  
+  <main *ngIf="currentView == 'mechanic'">
+  
+    <div>
+      <img (click)="changeView('default')" src="./../../assets/—Pngtree—fix car and vehicle logo_5092587.png" alt="">
+    </div>
+  
+    <div style="margin-left: 20px;">
+      <h1>Login to Continue</h1>
+        <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;">
+          <input aria-label="Email" placeholder="Email"/>
+        </div>
+  
+        <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+          <input aria-label="Password" placeholder="Password"/>
+        </div>
+     
+      <div class="btn-wrapper">
+        <button ion-button expand="block" color="primary">Login</button>
+      </div>
+      <span (click)="changeView('mechanic-signup')">Don't have an Account? SignUp</span>
+    </div>
+  
+  </main>
+  
+  <main *ngIf="currentView == 'user'">
+  
+    <div>
+      <img (click)="changeView('default')" src="./../../assets/—Pngtree—fix car and vehicle logo_5092587.png" alt="">
+    </div>
+  
+    <div style="margin-left: 20px;">
+      <h1>Login to Continue</h1>
+        <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;">
+          <input aria-label="Email" placeholder="Email"/>
+        </div>
+  
+        <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+          <input aria-label="Password" placeholder="Password"/>
+        </div>
+     
+      <div class="btn-wrapper">
+        <button ion-button expand="block" color="primary">Login</button>
+      </div>
+      <span (click)="changeView('user-signup')">Don't have an Account? SignUp</span>
+    </div>
+  
+  </main>
+  
+  <main style="overflow: scroll;" *ngIf="currentView == 'mechanic-signup'">
+  
+    <div >
+      <img (click)="changeView('default')" style="height: 280px;position:relative;left: 47px;" src="./../../assets/—Pngtree—fix car and vehicle logo_5092587.png" alt="">
+    </div>
+  
+    <div style="margin-left: 20px;">
+      <h1>SignUp to Continue</h1>
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Name" placeholder="Name"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Email" placeholder="Email"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Password" placeholder="Password"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="CNIC" placeholder="CNIC"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Phone" placeholder="Phone"/>
+    </div>
+  
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Phone" placeholder="Location"/>
+    </div>
+   
+  
+      </div>
+  
+      <div class="btn-wrapper">
+        <button ion-button expand="block" color="primary">Signup</button>
+      </div>
+      <span (click)="changeView('mechanic')">Already have an Account? Login</span>
+   
+  
+  </main>
+  
+  <main style="overflow: scroll;" *ngIf="currentView == 'user-signup'">
+  
+    <div >
+      <img (click)="changeView('default')" style="height: 280px;position:relative;left: 47px;" src="./../../assets/—Pngtree—fix car and vehicle logo_5092587.png" alt="">
+    </div>
+  
+    <div style="margin-left: 20px;">
+      <h1>SignUp to Continue</h1>
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Name" placeholder="Name"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Email" placeholder="Email"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Password" placeholder="Password"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Location" placeholder="Location"/>
+    </div>
+    
+    <div style="margin-left: 10px;margin-right: 10px;border-radius: 12px;margin-top: 15px;">
+      <input aria-label="Phone" placeholder="Phone"/>
+    </div>
+  
+      </div>
+  
+      <div class="btn-wrapper">
+        <button ion-button expand="block" color="primary">Login</button>
+      </div>
+      <span (click)="changeView('user')">Already have an Account? Login</span>
+   
+  
+  </main>
+  
