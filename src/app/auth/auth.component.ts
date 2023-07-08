@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
   }
 
   navigateTo(goto: string) {
-    this.router.navigateByUrl(goto)
+    this.router.navigate([goto]);
   }
 
   ngOnInit() {}
