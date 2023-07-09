@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MechDashboardComponent } from './mech-dashboard/mech-dashboard.component';
 import { MechMapsComponent } from './mech-maps/mech-maps.component';
+import { MechExpertiesComponent } from './mech-experties/mech-experties.component';
 
 const routes: Routes = [
   {
@@ -23,13 +24,18 @@ const routes: Routes = [
   {
     path: 'user-profile',
     component: ProfileComponent,
-  },{
+  },
+  {
     path: 'mech-dashboard',
     component: MechDashboardComponent,
   },
   {
     path: 'mech-maps',
     component: MechMapsComponent,
+  },
+  {
+    path: 'mech-expetties',
+    component: MechExpertiesComponent,
   },
 ];
 

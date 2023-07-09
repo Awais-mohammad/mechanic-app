@@ -86,7 +86,17 @@
   button {
     margin-top: 4px;
   }
-  
+  button {
+    width: 95%;
+    padding: 17px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    margin-top: 14px;
+}
   .custom-toolbar {
     padding: 10px;
     font-weight: bold;

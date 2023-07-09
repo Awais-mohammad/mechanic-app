@@ -98,3 +98,32 @@ button {
   color: #333333;
   /* Set the text color */
 }
+
+.rating {
+  color: #FFD700; /* Default color for empty stars */
+}
+
+.star {
+  display: inline-block;
+  color: #FFD700; /* Color for filled stars */
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.star.filled {
+  color: #FFAC00; /* Color for filled stars */
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button {
+  display: block;
+  margin-top: 20px;
+}
+
+div[style^="margin-top"] {
+  font-weight: bold;
+}

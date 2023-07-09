@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { MechDashboardComponent } from './mech-dashboard/mech-dashboard.component';
 import { MechMapsComponent } from './mech-maps/mech-maps.component';
 import { MechServicesComponent } from './mech-services/mech-services.component';
+import { MechExpertiesComponent } from './mech-experties/mech-experties.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MechServicesComponent } from './mech-services/mech-services.component';
     MechDashboardComponent,
     MechMapsComponent,
     MechServicesComponent,
+    MechExpertiesComponent,
   ],
   imports: [
     BrowserModule,

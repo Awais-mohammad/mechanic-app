@@ -14,10 +14,58 @@
           <div class="shop-address">{{ mechanic.address }}</div>
         </div>
       </div>
+      <div *ngIf="metch(mechanic?.paid?.name)">
+        <div class="rating">
+          <span (click)="rate(mechanic)" class="star" [class.filled]="true">&#9733;</span>
+          <span (click)="rate(mechanic)" class="star" [class.filled]="true">&#9733;</span>
+          <span (click)="rate(mechanic)" class="star" [class.filled]="true">&#9733;</span>
+          <span (click)="rate(mechanic)" class="star" [class.filled]="true">&#9733;</span>
+          <span (click)="rate(mechanic)" class="star" [class.filled]="true">&#9733;</span>
+        </div>
+      </div>
       <div class="distance">{{getRandomDistance()}} m Away</div>
       <button (click)="call(mechanic?.phone)" class="call-button">Call</button>
       <button (click)="navigateToMaps(mechanic.lat,mechanic.lng)" class="profile-button">View Location</button>
-      <button class="profile-button" (click)="book(mechanic)">Get Service</button>
+      <!-- <button class="profile-button" (click)="book(mechanic)">Get Service</button> -->
+      <button class="profile-button" (click)="getService(mechanic)">Get Service</button>
+
     </div>
   </div>
 </body>
+
+<div *ngIf="showBox"
+  style="padding: 4px;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; width: 90%; height: 70%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+  <div style="display: flex;justify-content: space-between;">
+    <h2>Box Content</h2>
+    <button (click)="showBox = false;selectedMech=[]" style="color: red;">X</button>
+  </div>
+
+  <p>Choose Needed Services</p>
+  <div *ngFor="let expertise of selectedMech?.expertiseList">
+    <label>
+      <input type="checkbox" [(ngModel)]="expertise.selected">
+      {{ expertise.name }} - ${{ expertise.price }}
+    </label>
+  </div>
+  
+  <button style=" background-color: #000;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;" (click)="calculateTotal()">Calculate Total</button>
+  
+  <div *ngIf="totalPrice !== null" style="margin-top: 20px;">
+    Total Price: ${{ totalPrice }}
+  </div>
+  <button style=" background-color: #000;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;" class="profile-button" (click)="book(selectedMech)">Get Service</button>
+</div>

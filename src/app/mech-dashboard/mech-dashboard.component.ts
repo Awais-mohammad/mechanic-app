@@ -78,12 +78,75 @@ export class MechDashboardComponent implements OnInit {
     );
   }
 
+  addExperties() {
+    this.router.navigateByUrl('mech-expetties');
+  }
+
+  paid(booking: any) {
+    console.log('booking paid for', booking);
+    const currentUser: any = this.auth.currentUser;
+
+    if (currentUser) {
+      const userID = currentUser.uid;
+
+      this.auth.authState.subscribe((user: any) => {
+        if (user.uid) {
+          // Update the document in Firestore
+          this.firestore
+            .collection('mechanics')
+            .doc(user.uid)
+            .update({
+              paid: { name: booking.name },
+            })
+            .then(() => {
+              console.log('User alpha added to the "paid" array.');
+
+              // Delete the document in the subcollection
+              // Delete documents in the subcollection
+          this.firestore
+            .collection('mechanics', (ref) =>
+              ref
+                .doc(user.uid)
+                .collection('bookings')
+                .where('name', '==', 'User alpha')
+            )
+            .get()
+            .subscribe((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                doc.ref
+                  .delete()
+                  .then(() => {
+                    console.log(
+                      'Document successfully deleted from bookings subcollection.'
+                    );
+                    this.getMechanicBookings();
+                  })
+                  .catch((error) => {
+                    console.error(
+                      'Error deleting document from bookings subcollection:',
+                      error
+                    );
+                  });
+              });
+            });
+            })
+            .catch((error) => {
+              console.error(
+                'Error adding "User alpha" to "paid" array:',
+                error
+              );
+            });
+        }
+      });
+    }
+  }
+
   navigateToMaps(lats: number, long: number) {
     this.router.navigate(['/mech-maps'], {
       queryParams: { showmaps: true, lats: lats, longs: long },
     });
   }
-  
+
   call(phone: any) {
     const dialerUrl = this.generateDialerUrl(phone);
     window.open(dialerUrl.toString(), '_system');
@@ -93,5 +156,4 @@ export class MechDashboardComponent implements OnInit {
     const telUrl = `tel:${phoneNumber}`;
     return this.sanitizer.bypassSecurityTrustUrl(telUrl);
   }
-
 }

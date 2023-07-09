@@ -4,6 +4,8 @@
 
 <body>
     <div class="container">
+        <button (click)="addExperties()"  ion-button expand="block" color="primary">Add Experties</button>
+
         <div class="card" *ngFor="let booking of bookings">
             <div class="shop-info">
                 <img class="shop-avatar" src="https://static.thenounproject.com/png/789280-200.png" alt="Shop Avatar">
@@ -14,6 +16,7 @@
             </div>
             <div class="distance">{{ getRandomDistance() }} m Away</div>
             <button (click)="call('+923989987908')" class="call-button">Call</button>
+            <button (click)="paid(booking)" class="call-button">Paid</button>
             <button (click)="navigateToMaps(booking.latitude, booking.longitude)" class="profile-button">View
                 Location</button>
         </div>

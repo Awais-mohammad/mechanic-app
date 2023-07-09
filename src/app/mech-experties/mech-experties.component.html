@@ -1,0 +1,17 @@
+<h1 style="text-align: center; font-weight: bold;">Add Expertise</h1>
+<div class="input-group">
+  <input type="text" placeholder="Expertise Name" [(ngModel)]="expertiseName">
+  <br>
+  <input type="number" placeholder="Price" [(ngModel)]="expertisePrice">
+  <br>
+  <button (click)="addExpertise()">Add</button>
+  <button (click)="gotoMain()" style="background-color: white;color: black;border: 1px solid black;" (click)="addExpertise()">Back</button>
+
+</div>
+
+<h2 style="text-align: center;">Expertise List</h2>
+<ul style="list-style: none; padding: 0; display: flex; justify-content: center; align-items: center;">
+  <li *ngFor="let expertise of expertiseList" style="margin: 10px;width: 100%; padding: 20px; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 4px;">
+    {{ expertise.name }} - ${{ expertise.price }}
+  </li>
+</ul>
