@@ -54,7 +54,8 @@ export class AuthComponent implements OnInit {
   }
 
   loginAsMechanic(): void {
-    this.afAuth
+    if(this.mechanicEmail && this.mechanicPassword) {
+      this.afAuth
       .signInWithEmailAndPassword(this.mechanicEmail, this.mechanicPassword)
       .then((userCredential) => {
         // Get the user data
@@ -68,89 +69,126 @@ export class AuthComponent implements OnInit {
 
         // Redirect to the mechanic dashboard or desired page
         console.log('mechanoc login successful');
-        this.navigateTo('mech-dashboard')
+        this.navigateTo('mech-dashboard');
       })
       .catch((error) => {
         // Handle login error
         console.log('Login error:', error);
       });
+    } else {
+      alert("please provide all fields")
+    }
+   
   }
 
   loginAsUser(): void {
-    this.afAuth
-      .signInWithEmailAndPassword(this.userEmail, this.userPassword)
-      .then((userCredential) => {
-        // Get the user data
-        const user = userCredential.user;
+    if (this.userEmail && this.userPassword) {
+      this.afAuth
+        .signInWithEmailAndPassword(this.userEmail, this.userPassword)
+        .then((userCredential) => {
+          // Get the user data
+          const user = userCredential.user;
 
-        // Store the user type and other information in Firestore
-        this.firestore.collection('users').doc(user?.uid).update({
-          userType: 'user',
-          // Other data
+          // Store the user type and other information in Firestore
+          this.firestore.collection('users').doc(user?.uid).update({
+            userType: 'user',
+            // Other data
+          });
+
+          // Redirect to the user dashboard or desired page
+          this.navigateTo('user-dashboard');
+        })
+        .catch((error) => {
+          // Handle login error
+          console.log('Login error:', error);
+          alert('Something went wrong!!!');
         });
-
-        // Redirect to the user dashboard or desired page
-        this.navigateTo('user-dashboard');
-      })
-      .catch((error) => {
-        // Handle login error
-        console.log('Login error:', error);
-      });
+    } else {
+      alert('please provide all data');
+    }
   }
 
   signUpAsMechanic(): void {
-    this.afAuth
-      .createUserWithEmailAndPassword(this.mechanicEmail, this.mechanicPassword)
-      .then((userCredential) => {
-        const user = userCredential.user;
+    if (
+      this.mechanicName &&
+      this.mechanicEmail &&
+      this.mechanicCNIC &&
+      this.mechanicPassword &&
+      this.mechanicPhone &&
+      this.mechanicLocation
+    ) {
+      alert('Account created in progress!!!!');
+      this.afAuth
+        .createUserWithEmailAndPassword(
+          this.mechanicEmail,
+          this.mechanicPassword
+        )
+        .then((userCredential) => {
+          const user = userCredential.user;
 
-        // Store mechanic data in Firestore
-        this.firestore.collection('mechanics').doc(user?.uid).set({
-          name: this.mechanicName,
-          email: this.mechanicEmail,
-          cnic: this.mechanicCNIC,
-          phone: this.mechanicPhone,
-          location: this.mechanicLocation,
-          lat: this.lat,
-          lng: this.lng,
-          userType: 'mechanic'
-          // Other mechanic data
+          // Store mechanic data in Firestore
+          this.firestore.collection('mechanics').doc(user?.uid).set({
+            name: this.mechanicName,
+            email: this.mechanicEmail,
+            cnic: this.mechanicCNIC,
+            phone: this.mechanicPhone,
+            location: this.mechanicLocation,
+            lat: this.lat,
+            lng: this.lng,
+            userType: 'mechanic',
+            // Other mechanic data
+          });
+
+          // Redirect to mechanic dashboard or desired page
+          console.log('mechanoc login successful');
+          this.navigateTo('mech-dashboard');
+        })
+        .catch((error) => {
+          // Handle signup error
+          console.log('Signup error:', error);
+          alert('Error something went wrong');
         });
-
-        // Redirect to mechanic dashboard or desired page
-        console.log('mechanoc login successful');
-        this.navigateTo('mech-dashboard')
-      })
-      .catch((error) => {
-        // Handle signup error
-        console.log('Signup error:', error);
-      });
+    } else {
+      alert('Please provide all fields to continue');
+    }
   }
 
   signUpAsUser(): void {
-    this.afAuth
-      .createUserWithEmailAndPassword(this.userEmail, this.userPassword)
-      .then((userCredential) => {
-        const user = userCredential.user;
+    if (
+      this.userEmail &&
+      this.userName &&
+      this.userLocation &&
+      this.userPhone &&
+      this.lat &&
+      this.lng
+    ) {
+      this.afAuth
+        .createUserWithEmailAndPassword(this.userEmail, this.userPassword)
+        .then((userCredential) => {
+          const user = userCredential.user;
 
-        // Store user data in Firestore
-        this.firestore.collection('users').doc(user?.uid).set({
-          name: this.userName,
-          email: this.userEmail,
-          location: this.userLocation,
-          phone: this.userPhone,
-          lat: this.lat,
-          lng: this.lng,
-          userType: 'user',
-          // Other user data
+          // Store user data in Firestore
+          this.firestore.collection('users').doc(user?.uid).set({
+            name: this.userName,
+            email: this.userEmail,
+            location: this.userLocation,
+            phone: this.userPhone,
+            lat: this.lat,
+            lng: this.lng,
+            userType: 'user',
+            // Other user data
+          });
+          this.navigateTo('user-dashboard');
+          // Redirect to user dashboard or desired page
+        })
+        .catch((error) => {
+          // Handle signup error
+          console.log('Signup error:', error);
+          alert("SOmething went wrong!!")
         });
-        this.navigateTo('user-dashboard');
-        // Redirect to user dashboard or desired page
-      })
-      .catch((error) => {
-        // Handle signup error
-        console.log('Signup error:', error);
-      });
+    } else {
+      alert('Please provide all fields');
+    }
   }
   ngOnInit() {}
 }

@@ -82,6 +82,60 @@ export class MechDashboardComponent implements OnInit {
     this.router.navigateByUrl('mech-expetties');
   }
 
+  acceptOrder(booking: any) {
+    this.auth.authState.subscribe((user: any) => {
+      if (user.uid) {
+        // Update the document in Firestore
+        this.firestore
+          .collection('mechanics')
+          .doc(user.uid)
+          .update({
+            paid: { name: booking.name },
+          })
+          .then(() => {
+            console.log('User alpha added to the "paid" array.');
+
+            // Delete the document in the subcollection
+            // Delete documents in the subcollection
+        this.firestore
+          .collection('mechanics', (ref) =>
+            ref
+              .doc(user.uid)
+              .collection('bookings')
+              .where('name', '==', 'User alpha')
+          )
+          .get()
+          .subscribe((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              doc.ref
+                .update({
+                  accepted : true,
+                })
+                .then(() => {
+                  console.log(
+                    'booking accepted.'
+                  );
+                  this.getMechanicBookings();
+                })
+                .catch((error) => {
+                  console.error(
+                    'Error deleting document from bookings subcollection:',
+                    error
+                  );
+                });
+            });
+          });
+          })
+          .catch((error) => {
+            console.error(
+              'Error adding "User alpha" to "paid" array:',
+              error
+            );
+          });
+      }
+    });
+  }
+
   paid(booking: any) {
     console.log('booking paid for', booking);
     const currentUser: any = this.auth.currentUser;
@@ -100,6 +154,7 @@ export class MechDashboardComponent implements OnInit {
             })
             .then(() => {
               console.log('User alpha added to the "paid" array.');
+              alert("Money Recieved for the service")
 
               // Delete the document in the subcollection
               // Delete documents in the subcollection
@@ -147,6 +202,32 @@ export class MechDashboardComponent implements OnInit {
     });
   }
 
+  reject(booking: any) {
+    this.auth.authState.subscribe((user: any) => {
+      if (user.uid) {
+        // Delete the document in Firestore
+        this.firestore
+          .collection('mechanics')
+          .doc(user.uid)
+          .collection('bookings', ref => ref.where('name', '==', booking.name))
+          .get()
+          .subscribe((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              doc.ref
+                .delete()
+                .then(() => {
+                  console.log('Booking deleted successfully.');
+                  this.getMechanicBookings();
+                })
+                .catch((error) => {
+                  console.error('Error deleting booking document:', error);
+                });
+            });
+          });
+      }
+    });
+  }
+  
   call(phone: any) {
     const dialerUrl = this.generateDialerUrl(phone);
     window.open(dialerUrl.toString(), '_system');

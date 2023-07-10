@@ -16,8 +16,10 @@
             </div>
             <div class="distance">{{ getRandomDistance() }} m Away</div>
             <button (click)="call('+923989987908')" class="call-button">Call</button>
-            <button (click)="paid(booking)" class="call-button">Paid</button>
-            <button (click)="navigateToMaps(booking.latitude, booking.longitude)" class="profile-button">View
+            <button *ngIf="booking?.accepted" (click)="paid(booking)" class="call-button">Recieved Money</button>
+            <button *ngIf="!booking?.accepted" (click)="acceptOrder(booking)" class="call-button">Accept</button>
+            <button style="border: 1px solid black;background-color: white;color: black;" *ngIf="!booking?.accepted" (click)="reject(booking)" class="call-button">Reject</button>
+            <button  (click)="navigateToMaps(booking.latitude, booking.longitude)" class="profile-button">View
                 Location</button>
         </div>
     </div>

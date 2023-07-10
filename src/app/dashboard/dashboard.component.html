@@ -24,8 +24,9 @@
         </div>
       </div>
       <div class="distance">{{getRandomDistance()}} m Away</div>
-      <button (click)="call(mechanic?.phone)" class="call-button">Call</button>
+      <button (click)="call(mechanic?.phone)" class="call-button">Call +{{mechanic?.phone}}</button>
       <button (click)="navigateToMaps(mechanic.lat,mechanic.lng)" class="profile-button">View Location</button>
+      <button *ngIf="metch(mechanic?.paid?.name)" style="background-color: green;color: white;" class="profile-button">Paid</button>
       <!-- <button class="profile-button" (click)="book(mechanic)">Get Service</button> -->
       <button class="profile-button" (click)="getService(mechanic)">Get Service</button>
 
@@ -36,7 +37,7 @@
 <div *ngIf="showBox"
   style="padding: 4px;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; width: 90%; height: 70%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
   <div style="display: flex;justify-content: space-between;">
-    <h2>Box Content</h2>
+    <h2>Experties</h2>
     <button (click)="showBox = false;selectedMech=[]" style="color: red;">X</button>
   </div>
 

@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
       if (user.uid) {
         const currentUserDocRef = this.firestore
           .collection('users')
-          .doc(user.uid);
+          .doc(user?.uid);
         currentUserDocRef.get().subscribe((docSnapshot: any) => {
           console.log('dataaaaaaaaaa', docSnapshot.data());
           const currentUserData = docSnapshot.data();
@@ -121,8 +121,10 @@ export class DashboardComponent implements OnInit {
     });
   }
   call(phone: any) {
-    const dialerUrl = this.generateDialerUrl(phone);
-    window.open(dialerUrl.toString(), '_system');
+    // const dialerUrl = this.generateDialerUrl(phone);
+    // window.open(dialerUrl.toString(), '_system');
+    navigator.clipboard.writeText(phone);
+    alert("Number Copied "+ phone)
   }
 
   generateDialerUrl(phoneNumber: string): SafeUrl {
